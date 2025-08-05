@@ -1,13 +1,11 @@
 import React from 'react'
 import { useState, CSSProperties } from "react";
-import { ClipLoader } from "react-spinners";
+import { ClipLoader,SquareLoader,GridLoader } from "react-spinners";
 
 function Spinner() {
     return (
-        <div className='d-flex justify-center spinner'>
-            <div className="spinner-border text-primary" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
+        <div className='d-flex justify-center'>
+            <GridLoader />
         </div>
     )
 }

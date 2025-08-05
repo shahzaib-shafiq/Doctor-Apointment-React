@@ -13,7 +13,7 @@ function HomePage() {
           },
         }
       );
-      console.log(res.data); // handle response here
+      console.log(res.data); 
     } catch (error) {
       console.log(error);
     }
