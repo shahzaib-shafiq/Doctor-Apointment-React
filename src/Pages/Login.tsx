@@ -13,7 +13,7 @@ function Register() {
       if (res?.data?.success) {
         console.log('Success:', res);
         localStorage.setItem('token', res.data.token); // Store token in localStorage
-        navigate('/dashboard'); // Redirect to dashboard or home page after login
+        navigate('/'); // Redirect to dashboard or home page after login
       
       }
     } catch (error) {
