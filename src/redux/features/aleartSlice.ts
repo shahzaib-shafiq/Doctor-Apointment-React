@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const aleartSlice=createSlice({
     name:"alearts",
     initialState: {
-        loading: false,
+        loading: true,
     },
     reducers:{
         showLoading:(state)=>{

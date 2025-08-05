@@ -3,19 +3,24 @@ import { Form, Input } from "antd";
 import '../Styles/RegisterStyle.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import {useDispatch} from 'react-redux';
+import { showLoading,hideLoading } from '../redux/features/aleartSlice';
 function Register() {
+  const dispatch=useDispatch();
   const navigate = useNavigate();
   const onFinishHandler = async (values: any) => {
     try {
+      dispatch(showLoading())
       const res = await axios.post('http://localhost:3000/api/v1/user/register', values)
       if (res?.data?.success) {
+        dispatch(hideLoading())
         console.log('Success:', res);
         navigate('/login');
       }
 
 
     } catch (error) {
+       dispatch(hideLoading())
       console.log(error);
     }
 

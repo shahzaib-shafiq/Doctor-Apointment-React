@@ -2,14 +2,20 @@ import React from 'react';
 import { Form, Input } from "antd";
 import '../Styles/RegisterStyle.css';
 import { Link, useNavigate } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import { showLoading,hideLoading } from '../redux/features/aleartSlice';
 import axios from 'axios';
 function Register() {
   const navigate = useNavigate();
+  const dispatch=useDispatch();
   const onFinishHandler = async(values: any) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
    
     try {
+      dispatch(showLoading())
+
       const res=await axios.post('http://localhost:3000/api/v1/user/login', values);
+      dispatch(hideLoading())
       if (res?.data?.success) {
         console.log('Success:', res);
         localStorage.setItem('token', res.data.token); // Store token in localStorage
@@ -17,6 +23,7 @@ function Register() {
       
       }
     } catch (error) {
+      dispatch(hideLoading())
       console.log(error)
     }
   };

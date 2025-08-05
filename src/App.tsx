@@ -4,17 +4,26 @@ import './App.css'
 import HomePage from './Pages/HomePage'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
+import {useSelector} from 'react-redux';
+import Spinner from './Components/Spinner'
+import ProtectedRoutes from './Components/ProtectedRoutes'
+import PublicRoutes from './Components/PublicRoutes'
 function App() {
+  const {loading}=useSelector((state:any)=>state.alearts)
+
   return (
+
     <>
     <Router>
-     <Routes>
+  {loading ?(<Spinner/>):(<Routes>
         {/* Route for homepage */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<ProtectedRoutes><HomePage/></ProtectedRoutes>} />
         
-      </Routes>
+        <Route path="/login" element={<PublicRoutes> <Login /></PublicRoutes>} />
+        <Route path="/register" element={<PublicRoutes><Register /></PublicRoutes>} />
+        
+      </Routes>)}
     </Router>
     </>
   )
